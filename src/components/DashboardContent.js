@@ -1,22 +1,35 @@
-import React from 'react'
+import React from 'react';
+import planets from '../planets.json';
+import solorSytem from '../assets/yat.gif';
 
-export default function DashboardContent() {
+export default function DashboardContent(props) {
+    const renderList = () => {
+        return Object.keys(planets.sections).map((planet)=>{
+            return (
+                <button type="button" className="ui card" key={planet}>
+                    <div className="content">{planet}</div>
+                </button>
+            )
+        })
+    }
 
     return (
         <div className="ui pilled segment">
-            <h4 className="ui header">Title</h4>
-            <p>eam alia faceteantur vix. ea lao alterum definiebas in. Vim dolorum definiebas an. Mei ex natum rebum iisque.</p>
-            <p>Audiam quaerenduest latine dduo. Vis sint solet expetenda ne, his te phaedrum referrentur consectetuer. Id vix fabulas oporteat, ei quo vide phaedrum, vim vivendum maiestatis in.</p>
-            <p>Eu quo homero bland no illum aperiri quo, usu odio brute at. Qui te porro electram, ea dico facete utroque quo. Populo quodsi te eam, wisi everti eos ex, eum elitr altera utamur at. Quodsi convenire mnesarchum eu per, quas minimum postulant per id.</p>
-            <p>eam alia faceteantur vix. ea lao alterum definiebas in. Vim dolorum definiebas an. Mei ex natum rebum iisque.</p>
-            <p>Audiam quaerenduest latine dduo. Vis sint solet expetenda ne, his te phaedrum referrentur consectetuer. Id vix fabulas oporteat, ei quo vide phaedrum, vim vivendum maiestatis in.</p>
-            <p>Eu quo homero bland no illum aperiri quo, usu odio brute at. Qui te porro electram, ea dico facete utroque quo. Populo quodsi te eam, wisi everti eos ex, eum elitr altera utamur at. Quodsi convenire mnesarchum eu per, quas minimum postulant per id.</p>
-            <p>eam alia faceteantur vix. ea lao alterum definiebas in. Vim dolorum definiebas an. Mei ex natum rebum iisque.</p>
-            <p>Audiam quaerenduest latine dduo. Vis sint solet expetenda ne, his te phaedrum referrentur consectetuer. Id vix fabulas oporteat, ei quo vide phaedrum, vim vivendum maiestatis in.</p>
-            <p>Eu quo homero bland no illum aperiri quo, usu odio brute at. Qui te porro electram, ea dico facete utroque quo. Populo quodsi te eam, wisi everti eos ex, eum elitr altera utamur at. Quodsi convenire mnesarchum eu per, quas minimum postulant per id.</p>
-            <p>eam alia faceteantur vix. ea lao alterum definiebas in. Vim dolorum definiebas an. Mei ex natum rebum iisque.</p>
-            <p>Audiam quaerenduest latine dduo. Vis sint solet expetenda ne, his te phaedrum referrentur consectetuer. Id vix fabulas oporteat, ei quo vide phaedrum, vim vivendum maiestatis in.</p>
-            <p>Eu quo homero bland no illum aperiri quo, usu odio brute at. Qui te porro electram, ea dico facete utroque quo. Populo quodsi te eam, wisi everti eos ex, eum elitr altera utamur at. Quodsi convenire mnesarchum eu per, quas minimum postulant per id.</p>
+            <h2 className="ui header">{props.title}</h2>
+            {(props.title === planets.name) ? 
+                <div className="ui grid">
+                    <div className="seven wide column">
+                        {renderList()}
+                    </div>
+                    <div className="nine wide column">
+                        <img src={solorSytem} alt="solar-system"/>
+                    </div>
+            </div>:null}    
         </div>
     )
 }
+
+
+//Todo's 
+// compare two planets functionality 
+// details about particular planet and refactor json data
