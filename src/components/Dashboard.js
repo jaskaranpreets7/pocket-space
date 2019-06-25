@@ -1,33 +1,31 @@
-import React from 'react'
+import React, {useState} from 'react'
 import DashboardContent from './DashboardContent';
 
-export default function Dashboard() {
-    let obj = [
-        { "id": 1, "title": "Universe" },
-        { "id": 2, "title": "Solar System" },
-        { "id": 3, "title": "Galaxy", },
-        { "id": 4, "title": "Big Bang Theory", },
-        { "id": 5, "title": "Space" }
-    ];
+export default function Dashboard(props) {
+    const [title, setTitle] = useState('');
+    const handleClick = (e) =>{
+        props.handleClick();
+        setTitle(e.currentTarget.dataset.value)
+    };
 
     const renderList = () => {
-        return obj.map((item) => {
+        return props.result.map((item) => {
             return (
                 <div className="ui card" key={item.id}>
                     <div className="content">
-                        <a className="header" href="javascript:void(0)">{item.title}</a>
+                        <div className="header" >{item.title}</div>
                         <div className="description">
                             Some Description of {item.title}
                         </div>
                     </div>
                     <div className="image">
-                        <img src="" />
+                        <img src="" alt="" />
                     </div>
                     <div className="extra content">
-                        <a  href="javascript:void(0)">
+                        <button className="ui button" tabIndex="0" type="click" onClick={(e)=>handleClick(e)} data-value={item.title}>
                             <i className="hand point right icon"></i>
-                            More Info.
-                        </a>
+                            &nbsp;&nbsp;More Info.
+                        </button>
                     </div>
                 </div>
             )
@@ -39,7 +37,7 @@ export default function Dashboard() {
                 {renderList()}
             </div>
             <div className="thirteen wide column">
-                <DashboardContent />
+                {(props.isSelected)?<div className="ui pilled segment"><div><p>Select more info</p></div></div> : <DashboardContent title={title} />}
             </div>
         </div>
     )
