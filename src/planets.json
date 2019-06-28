@@ -6,20 +6,6 @@
         "sourceName": "NASA",
         "sourceUrl": "http://nssdc.gsfc.nasa.gov/planetary/factsheet/"
     },
-    "aliases": [
-        "solar",
-        "planet",
-        "planets",
-        "solarsystem",
-        "sun",
-        "earth",
-        "mercury",
-        "mars",
-        "jupiter",
-        "saturn",
-        "uranus",
-        "neptune"
-    ],
     "template_type": "reference",
     "section_order": [
         "Sun",
