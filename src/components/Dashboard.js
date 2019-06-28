@@ -3,6 +3,7 @@ import DashboardContent from './DashboardContent';
 
 export default function Dashboard(props) {
     const [title, setTitle] = useState('');
+    
     const handleClick = (e) =>{
         props.handleClick();
         setTitle(e.currentTarget.dataset.value)
@@ -37,7 +38,7 @@ export default function Dashboard(props) {
                 {renderList()}
             </div>
             <div className="thirteen wide column">
-                {(props.isSelected)?<div className="ui pilled segment"><div><p>Select more info</p></div></div> : <DashboardContent title={title} />}
+                {(props.isSelected)?<div className="ui center aligned placeholder segment"><div><p>Select more info</p></div></div> : <DashboardContent title={title} />}
             </div>
         </div>
     )
