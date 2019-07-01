@@ -12,8 +12,3 @@ export default function DashboardContent(props) {
     )
 }
 
-
-//Todo's 
-// compare two planets functionality 
-// details about particular planet and refactor json data
-//animation to show details
