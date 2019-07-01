@@ -9,11 +9,11 @@ function App() {
 
   useEffect(()=>{
       let topics = [
-          { "id": 1, "title": "Space" },
-          { "id": 2, "title": "Big Bang Theory" },
-          { "id": 3, "title": "Galaxy"},
-          { "id": 4, "title": "Universe" },
-          { "id": 5, "title": "Solar System" }
+          { "id": 1, "title": "Space", 'hasDetails' : false },
+          { "id": 2, "title": "Big Bang Theory" , 'hasDetails' : false},
+          { "id": 3, "title": "Galaxy"  ,'hasDetails' : false},
+          { "id": 4, "title": "Universe",  'hasDetails' : true },
+          { "id": 5, "title": "Solar System", 'hasDetails' : true }
       ];
       setResult(topics)
   },[])
