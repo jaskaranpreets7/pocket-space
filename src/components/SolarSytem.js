@@ -1,6 +1,10 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState, Fragment } from 'react';
+import { Bounce} from 'react-reveal';
+import RubberBand from 'react-reveal/RubberBand';
+
 import solarImg from '../assets/yat.gif';
 import planetList from '../planets.json';
+import '../styles/solarsystem.css';
 
 export default function SolarSytem() {
     const [check, setCheck] = useState(false);
@@ -14,9 +18,11 @@ export default function SolarSytem() {
     const renderList = () => {
         return Object.keys(planetList.sections).map((planet) => {
             return (
-                <div className="ui card" key={planet} draggable="true" onDragStart={(e) => { onDragStart(e, planet) }} style={{ cursor: 'pointer' }}>
-                    <div className="content">{planet}</div>
-                </div>
+                <Bounce top key={planet}>
+                    <div className="ui card" draggable="true" onDragStart={(e) => { onDragStart(e, planet) }} style={{ cursor: 'pointer' }}>
+                        <div className="content">{planet}</div>
+                    </div>
+                </Bounce>
             )
         })
     }
@@ -49,12 +55,14 @@ export default function SolarSytem() {
         if (compare1.length > 0) {
             return planetList.sections[compare1].map((item, index) => {
                 return (
-                    <div key={index}>
-                        <h4>Distance</h4><em>{item.Distance}</em>
-                        <h4>Mass</h4><em>{item.Mass}</em>
-                        <h4>Volume</h4><em>{item.Volume}</em>
-                        <h4>Temperature</h4><em>{item.Temperature}</em>
-                    </div>
+                    <RubberBand key={index}>
+                        <div>             
+                            <h4>Distance</h4><em>{item.Distance}</em>
+                            <h4>Mass</h4><em>{item.Mass}</em>
+                            <h4>Volume</h4><em>{item.Volume}</em>
+                            <h4>Temperature</h4><em>{item.Temperature}</em>
+                        </div>
+                    </RubberBand>
                 )
             })
         }
@@ -65,12 +73,14 @@ export default function SolarSytem() {
         if (compare2.length > 0) {
             return planetList.sections[compare2].map((item, index) => {
                 return (
-                    <div key={index}>
-                        <h4>Distance</h4><em>{item.Distance}</em>
-                        <h4>Mass</h4><em>{item.Mass}</em>
-                        <h4>Volume</h4><em>{item.Volume}</em>
-                        <h4>Temperature</h4><em>{item.Temperature}</em>
-                    </div>
+                    <RubberBand key={index}>
+                        <div>
+                            <h4>Distance</h4><em>{item.Distance}</em>
+                            <h4>Mass</h4><em>{item.Mass}</em>
+                            <h4>Volume</h4><em>{item.Volume}</em>
+                            <h4>Temperature</h4><em>{item.Temperature}</em>   
+                        </div> 
+                    </RubberBand>
                 )
             })
         }
@@ -79,8 +89,6 @@ export default function SolarSytem() {
     const onRefresh = () => {
         setCompare1('');
         setCompare2('');
-
-        console.log(compare1, compare2)
     }
 
     return (
@@ -90,7 +98,7 @@ export default function SolarSytem() {
                     {renderList()}
                 </div>
                 <div className="nine wide column">
-                    <div style={{ paddingBottom: '15px', textAlign: 'right' }}>
+                    <div className="btn-pos">
                         {(check) ?
                             <Fragment><button className="ui button" onClick={showImage}><i className="align justify icon"></i>Show Image</button> <button onClick={onRefresh} className="ui button">Refresh</button></Fragment>
                             : <button className="ui button" onClick={onCheck}><i className="align justify icon"></i>Compare two planets</button>}
@@ -120,9 +128,9 @@ export default function SolarSytem() {
                                             <div className="eight wide column">
                                                 {compare2Details(compare2)}
                                             </div>
-                                        </div> : <div style={{ textAlign: 'center', paddingTop: '10px' }}>{(compare1.length === 0 && compare2.length === 0) ? null : <h3><em>Can't compare same terrestrial bodies</em></h3>}</div>}
+                                        </div> : <div className="compare-text">{(compare1.length === 0 && compare2.length === 0) ? null : <h3><em>Can't compare same terrestrial bodies</em></h3>}</div>}
                                 </Fragment> : null}
-                        </Fragment> : <img src={solarImg} alt="solar-system" />}
+                        </Fragment> : <img className="responsive" src={solarImg} alt="solar-system" />}
                 </div>
             </div>
         </div>
