@@ -1,0 +1,14 @@
+.btn-pos{
+ padding-bottom: 15px; 
+ text-align: right;
+}
+
+.compare-text{
+   text-align: center;
+   padding-top: 10px;
+}
+.responsive{
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+}
