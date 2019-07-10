@@ -7,7 +7,6 @@ export default function SolarSytem() {
     const [compare1, setCompare1] = useState('');
     const [secondValue, setSecondValue] = useState(false);
     const [compare2, setCompare2] = useState('');
-
     const onCheck = () => {
         setCheck(true);
     }
@@ -24,7 +23,6 @@ export default function SolarSytem() {
 
     const onDragStart = (e, id) => {
         e.dataTransfer.setData('id', id)
-
     }
 
     const onDragOver = (e) => {
@@ -47,32 +45,42 @@ export default function SolarSytem() {
         setCheck(false)
     };
 
-    const compare1Details = (compare1) =>{
-       return planetList.sections[compare1].map((item,index)=>{
-            return (
-                <div key={index}>
-                    <h4>Distance</h4><em>{item.Distance}</em>
-                    <h4>Mass</h4><em>{item.Mass}</em>
-                    <h4>Volume</h4><em>{item.Volume}</em>
-                    <h4>Temperature</h4><em>{item.Temperature}</em> 
-                </div>
-            )
-        })
-
+    const compare1Details = (compare1) => {
+        if (compare1.length > 0) {
+            return planetList.sections[compare1].map((item, index) => {
+                return (
+                    <div key={index}>
+                        <h4>Distance</h4><em>{item.Distance}</em>
+                        <h4>Mass</h4><em>{item.Mass}</em>
+                        <h4>Volume</h4><em>{item.Volume}</em>
+                        <h4>Temperature</h4><em>{item.Temperature}</em>
+                    </div>
+                )
+            })
+        }
     }
- 
 
-    const compare2Details = (compare2) =>{
-        return planetList.sections[compare2].map((item,index)=>{
-            return (
-                <div key={index}>
-                    <h4>Distance</h4><em>{item.Distance}</em>
-                    <h4>Mass</h4><em>{item.Mass}</em>
-                    <h4>Volume</h4><em>{item.Volume}</em>
-                    <h4>Temperature</h4><em>{item.Temperature}</em> 
-                </div>
-            )
-        })
+
+    const compare2Details = (compare2) => {
+        if (compare2.length > 0) {
+            return planetList.sections[compare2].map((item, index) => {
+                return (
+                    <div key={index}>
+                        <h4>Distance</h4><em>{item.Distance}</em>
+                        <h4>Mass</h4><em>{item.Mass}</em>
+                        <h4>Volume</h4><em>{item.Volume}</em>
+                        <h4>Temperature</h4><em>{item.Temperature}</em>
+                    </div>
+                )
+            })
+        }
+    }
+
+    const onRefresh = () => {
+        setCompare1('');
+        setCompare2('');
+
+        console.log(compare1, compare2)
     }
 
     return (
@@ -84,12 +92,12 @@ export default function SolarSytem() {
                 <div className="nine wide column">
                     <div style={{ paddingBottom: '15px', textAlign: 'right' }}>
                         {(check) ?
-                            <button className="ui button" onClick={showImage}><i className="align justify icon"></i>Show Image</button>
+                            <Fragment><button className="ui button" onClick={showImage}><i className="align justify icon"></i>Show Image</button> <button onClick={onRefresh} className="ui button">Refresh</button></Fragment>
                             : <button className="ui button" onClick={onCheck}><i className="align justify icon"></i>Compare two planets</button>}
                     </div>
                     {(check) ?
                         <Fragment>
-                             <div className="ui grid">
+                            <div className="ui grid">
                                 <div className="eight wide column"
                                     onDragOver={(e) => { onDragOver(e) }}
                                     onDrop={(e) => { onDrop1(e) }}
@@ -102,27 +110,22 @@ export default function SolarSytem() {
                                     {(compare2.length) ? <div className="ui card" style={{ textAlign: 'center' }} ><div className="content">{compare2}</div></div> : <span>Drag 2nd planet and Drop here</span>}
                                 </div>
                             </div>
-                                {(secondValue) ?
-                                    <Fragment>
-                                        {(compare1 !== compare2) ?
-                                            <div className="ui grid">
-                                                <div className="eight wide column">
-                                                    {compare1Details(compare1)}
-                                                </div>
-                                                <div className="eight wide column">
-                                                    <p>{compare2Details(compare2)}</p>
-                                                </div>
-                                            </div> : <div style={{textAlign:'center', paddingTop:'10px'}}><h3><em>Can't compare same planets</em></h3></div>}
-                                    </Fragment>:null}
-                        </Fragment>: <img src={solarImg} alt="solar-system" />}
+                            {(secondValue) ?
+                                <Fragment>
+                                    {(compare1 !== compare2) ?
+                                        <div className="ui grid">
+                                            <div className="eight wide column">
+                                                {compare1Details(compare1)}
+                                            </div>
+                                            <div className="eight wide column">
+                                                {compare2Details(compare2)}
+                                            </div>
+                                        </div> : <div style={{ textAlign: 'center', paddingTop: '10px' }}>{(compare1.length === 0 && compare2.length === 0) ? null : <h3><em>Can't compare same terrestrial bodies</em></h3>}</div>}
+                                </Fragment> : null}
+                        </Fragment> : <img src={solarImg} alt="solar-system" />}
                 </div>
             </div>
         </div>
 
-                )
-            }
-            
-            
-            //Todo's 
-            // compare two planets functionality 
-            // details about particular planet and refactor json data
+    )
+}
