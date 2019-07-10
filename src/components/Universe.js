@@ -1,4 +1,5 @@
 import React from 'react'
+import '../styles/universe.css'
 
 export default function Universe() {
     const universFacts = [
