@@ -20,14 +20,12 @@ function App() {
 
   const handleClick = (e) => {
     setIsSelected(false);
-}
+  }
 
   return (
-    <div>
+    <div style={{ width:'100%', height:'100vh', overflow:'unset'}}>
       <Header />
-      <div className="ui raised segment">
-        <Dashboard result={result} handleClick={handleClick} isSelected={isSelected} />
-      </div>
+      <Dashboard result={result} handleClick={handleClick} isSelected={isSelected} />
     </div>
   );
 }
