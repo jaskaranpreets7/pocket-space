@@ -33,7 +33,7 @@ export default function Dashboard(props) {
         })
     }
     return (
-        <div className="ui grid" style={{ marginTop: '15px' }}>
+        <div className="ui grid" style={{ paddingTop: '15px', maxHeight:'96vh' ,overflow:'auto' }}>
             <div className="three wide column">
                 {renderList()}
             </div>
