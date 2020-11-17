@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import DashboardContent from './DashboardContent';
+import '../styles/dashboard.css'
 
 export default function Dashboard(props) {
     const [title, setTitle] = useState('');
@@ -33,7 +34,7 @@ export default function Dashboard(props) {
         })
     }
     return (
-        <div className="ui grid" style={{ paddingTop: '15px', maxHeight:'96vh' ,overflow:'auto' }}>
+        <div className="ui grid dashboard-wrapper">
             <div className="three wide column">
                 {renderList()}
             </div>

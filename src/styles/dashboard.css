@@ -1,0 +1,5 @@
+.dashboard-wrapper{
+    max-height: 96vh; 
+    overflow:auto;
+    padding: 15px 15px 0px 15px !important;
+}
