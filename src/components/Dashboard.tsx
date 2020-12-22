@@ -2,16 +2,26 @@ import React, {useState} from 'react'
 import DashboardContent from './DashboardContent';
 import '../styles/dashboard.css'
 
-export default function Dashboard(props) {
+interface Props {
+    handleSubHeaderClick : () => void, 
+    subHeader: {
+        id: number
+        title: string
+        hasDetails: boolean
+    }[],
+    isSelected : boolean
+}
+
+export default function Dashboard( { subHeader, handleSubHeaderClick, isSelected } :Props  ) {
     const [title, setTitle] = useState('');
 
-    const handleClick = (e) =>{
-        props.handleClick();
+    const handleClick = ( e : any ) =>{
+        handleSubHeaderClick();
         setTitle(e.currentTarget.dataset.value)
     };
 
     const renderList = () => {
-        return props.result.map((item) => {
+        return subHeader.map((item) => {
             return (
                 <div className="ui card" key={item.id}>
                     <div className="content">
@@ -24,7 +34,7 @@ export default function Dashboard(props) {
                         <img src="" alt="" />
                     </div>
                     <div className="extra content">
-                        <button className="ui button" tabIndex="0" type="click" onClick={(e)=>handleClick(e)} data-value={item.title} disabled={!item.hasDetails}>
+                        <button className="ui button" tabIndex={0}  onClick={(e)=>handleClick(e)} data-value={item.title} disabled={!item.hasDetails}>
                             <i className="hand point right icon"></i>
                             &nbsp;&nbsp;More Info.
                         </button>
@@ -39,7 +49,7 @@ export default function Dashboard(props) {
                 {renderList()}
             </div>
             <div className="thirteen wide column">
-                {(props.isSelected)?<div style={{margin:'345px 0px 0px 410px'}}><h2>Select more info</h2></div> : <DashboardContent title={title} />}
+                {(isSelected)?<div style={{margin:'345px 0px 0px 410px'}}><h2>Select more info</h2></div> : <DashboardContent title={title} />}
             </div>
         </div>
     )
