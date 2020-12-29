@@ -6,6 +6,7 @@ import solarImg from '../assets/yat.gif';
 import planetList from '../planets.json';
 import '../styles/solarsystem.css';
 
+
 export default function SolarSytem() {
     const [check, setCheck] = useState(false);
     const [compare1, setCompare1] = useState('');
@@ -27,21 +28,21 @@ export default function SolarSytem() {
         })
     }
 
-    const onDragStart = (e, id) => {
+    const onDragStart = ( e: any, id: number) => {
         e.dataTransfer.setData('id', id)
     }
 
-    const onDragOver = (e) => {
+    const onDragOver = (e:any) => {
         e.preventDefault();
     }
 
-    const onDrop1 = (e) => {
+    const onDrop1 = (e:any) => {
         let id = e.dataTransfer.getData('id');
         setCompare1(id)
 
     }
 
-    const onDrop2 = (e) => {
+    const onDrop2 = (e:any) => {
         let id = e.dataTransfer.getData('id');
         setCompare2(id);
         setSecondValue(true);
@@ -51,12 +52,12 @@ export default function SolarSytem() {
         setCheck(false)
     };
 
-    const compare1Details = (compare1) => {
+    const compare1Details = (compare1 : any) => {
         if (compare1.length > 0) {
-            return planetList.sections[compare1].map((item, index) => {
+            return planetList.sections[compare1].map((item, index : number) => {
                 return (
                     <RubberBand key={index}>
-                        <div>             
+                        <div>              
                             <h4>Distance</h4><em>{item.Distance}</em>
                             <h4>Mass</h4><em>{item.Mass}</em>
                             <h4>Volume</h4><em>{item.Volume}</em>
