@@ -28,21 +28,21 @@ export default function SolarSytem() {
         })
     }
 
-    const onDragStart = ( e: any, id: number) => {
+    const onDragStart = ( e, id) => {
         e.dataTransfer.setData('id', id)
     }
 
-    const onDragOver = (e:any) => {
+    const onDragOver = (e) => {
         e.preventDefault();
     }
 
-    const onDrop1 = (e:any) => {
+    const onDrop1 = (e) => {
         let id = e.dataTransfer.getData('id');
         setCompare1(id)
 
     }
 
-    const onDrop2 = (e:any) => {
+    const onDrop2 = (e) => {
         let id = e.dataTransfer.getData('id');
         setCompare2(id);
         setSecondValue(true);
@@ -52,9 +52,9 @@ export default function SolarSytem() {
         setCheck(false)
     };
 
-    const compare1Details = (compare1 : any) => {
+    const compare1Details = (compare1 ) => {
         if (compare1.length > 0) {
-            return planetList.sections[compare1].map((item, index : number) => {
+            return planetList.sections[compare1].map((item, index) => {
                 return (
                     <RubberBand key={index}>
                         <div>              
