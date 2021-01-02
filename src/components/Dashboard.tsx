@@ -49,7 +49,7 @@ export default function Dashboard( { subHeader, handleSubHeaderClick, isSelected
                 {renderList()}
             </div>
             <div className="thirteen wide column">
-                {(isSelected)?<div style={{margin:'345px 0px 0px 410px'}}><h2>Select more info</h2></div> : <DashboardContent title={title} />}
+                {(isSelected)?<div className="select-label"><h2>Select more info</h2></div> : <DashboardContent title={title} />}
             </div>
         </div>
     )
