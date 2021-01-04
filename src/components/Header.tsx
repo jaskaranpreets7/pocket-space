@@ -3,7 +3,7 @@ import '../styles/header.css'
 function Header() {
     return (
         <div className="header-wrapper">
-            <h3 className="ui center aligned inverted block header">
+            <h3 className="ui center aligned block header">
                 Pocket Space
             </h3>
         </div>
